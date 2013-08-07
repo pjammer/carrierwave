@@ -16,7 +16,11 @@ module CarrierWave
       end
 
       def identifier
-        uploader.filename
+        if uploader.blank? || !uploader.filename.blank?
+          uploader.filename
+        else
+          uploader.file.filename
+        end
       end
 
       def store!(file)
